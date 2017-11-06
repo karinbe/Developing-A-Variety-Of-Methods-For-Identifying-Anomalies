@@ -1,6 +1,7 @@
 # Anomaly in cyber networks
 מציאת כלים לפתרון בעת חריגות בסייבר
 
+![icon](https://github.com/karinbe/anomaly_in_cyber_networks/blob/master/pics/icon.png)
 
 ## Disclaimer
 
