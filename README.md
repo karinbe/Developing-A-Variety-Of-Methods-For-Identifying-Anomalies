@@ -11,9 +11,11 @@
 
 
 ## Members
-* code leaders -- 
+* Code leaders:
+  * [Karin Benson](https://github.com/karinbe)
+  * [Hadas Ben Mordechai](https://github.com/Hadas135)
 
-* Acedamic Advisor
+* Acedamic Advisor: Doctor Guy Leshem
 
 
  |Category|Status|
