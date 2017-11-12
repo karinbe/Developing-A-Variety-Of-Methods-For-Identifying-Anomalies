@@ -1,9 +1,9 @@
 
 
 # Cyber - Medical And Public Health Anomaly Detection 
-
+<p align="center"> 
 ![icon](https://github.com/karinbe/anomaly_in_cyber_networks/blob/master/pics/icon.png)
-
+</p>
 As part of the closure of the degree of the Department of Software Engineering in "Azrieli College of Engineering - Jerusalem",
 our final project will deal with information security in medical systems.
 
