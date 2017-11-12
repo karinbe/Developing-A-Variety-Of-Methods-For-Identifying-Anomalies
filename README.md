@@ -1,7 +1,17 @@
-# Anomaly in cyber networks
-מציאת כלים לפתרון בעת חריגות בסייבר
+
+
+# Cyber - Medical And Public Health Anomaly Detection 
 
 ![icon](https://github.com/karinbe/anomaly_in_cyber_networks/blob/master/pics/icon.png)
+
+As part of the closure of the degree of the Department of Software Engineering in "Azrieli College of Engineering - Jerusalem",
+our final project will deal with information security in medical systems.
+
+The project will focus on developing a variety of methods for identifying anomalies and making decisions according to the majority vote on medical data.
+
+In our view, the issue of information security, especially in the public health sector, is a focus of trouble on the part of hostile elements - from infiltration to privacy and theft of details to the change in the dosage of a registered drug - which is a threat to human life. Therefore it is desirable to be prepared and to know how to defend against these dangers.
+
+
 
 ## Disclaimer
 
