@@ -1,9 +1,9 @@
 
 
-# Cyber - Medical And Public Health Anomaly Detection 
+# Developing-A-Variety-Of-Methods-For-Identifying-Anomalies
  
  <p align="center">
-  <img src=https://github.com/karinbe/anomaly_in_cyber_networks/blob/master/pics/icon.png>
+  <img src=https://github.com/karinbe/Developing-A-Variety-Of-Methods-For-Identifying-Anomalies/blob/master/pics/logo.jpg>
 </p>
  
 As part of the closure of the degree of the Department of Software Engineering (BS.c) in "Azrieli College of Engineering - Jerusalem",
