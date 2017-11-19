@@ -1,6 +1,6 @@
 
 
-# Developing-A-Variety-Of-Methods-For-Identifying-Anomalies
+# Developing A Variety Of Methods For Identifying Anomalies
  
  <p align="center">
   <img src=https://github.com/karinbe/Developing-A-Variety-Of-Methods-For-Identifying-Anomalies/blob/master/pics/logo.jpg>
