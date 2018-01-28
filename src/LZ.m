@@ -143,37 +143,3 @@ function fatherIndex = isFound(currentString, dict, currentDictIndex)
     end
     fatherIndex = 0;
 end
-%--------------------------------------------------------------------------
-% TODO - not our code...
-% y will return true or false , x is the string to be searched to be entered with function call, the search is bfs (bruth first search)
-function y = searchStr(x , tree) 
-remain_search = length(x);
-while remain_search~=0 % keep working until all input search string is checked
-   if remain_search>5 % for search string longer then max dictionary object length
-       str5 = x(1:5); % set the 5 first chars to temp variable
-       t = tree(32:62); % get indexes for length 5 in lz tree
-       temp_tree= t(~cellfun('isempty',t)); % erase empty cells to allow ismember function 
-       if ismember(str5 ,  temp_tree)  %check if first 5 digits are in the tree          
-            x = x(6:remain_search); % if true, check the rest of search string
-            remain_search = length(x);
-       else % first 5 digits not exist in lz tree, the search string is not in our bin
-            y = 'did not find match';
-           remain_search = 0;
-       end
-   else % get the tree location for next length. 
-       low = 2.^remain_search;
-       high = 2.^(remain_search+1)- 1;
-       if high>62
-           high = 62;
-       end
-       p =  tree(low:high);
-       new_temp_tree= p(~cellfun('isempty',p));
-       if ismember(x , new_temp_tree)
-            y = 'match was found';
-       else
-            y = 'did not find match';
-       end
-       remain_search = 0;
-    end
-end
-end
