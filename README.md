@@ -25,7 +25,6 @@ This project represents our entry for the final project in our study in the Soft
   * [Karin Benson](https://github.com/karinbe)
   * [Hadas Ben Mordechai](https://github.com/Hadas135)
 
-  
 * Acedamic Advisor: Dr. Guy Leshem
 
 
