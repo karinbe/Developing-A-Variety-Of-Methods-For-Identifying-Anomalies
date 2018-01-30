@@ -29,7 +29,7 @@ for i = 1:rows
         dataAsStr = strcat(dataAsStr,char(ascii));
     end
 end
-disp(dataAsStr);
+
 %----------------------------
 % alfabeto = ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M' 'N' 'O' 'P' 'Q' 'R' 'S' 'T' 'U' 'V' 'W' 'X' 'W' 'Z' ];
 % stringa = dataAsStr;
@@ -65,70 +65,75 @@ for i = 1:currentDictIndex-1
 end
 
 % Build & draw the tree:
-nodes = zeros(1,dataLength);
+nodes = zeros(1,dataLength); % Each cell contain the location of str(i) father + 1
 for i = 1:dataLength
     nodes(i+1) = fatherLocation(i) + 1;
-%     figure;
-%     hold on
-%     treeplot(nodes);
-%     hold off
 end
 
-c = 1;
-organize = zeros(1,max(nodes));
-for i = 1:dataLength
-    if organize(nodes(i+1)) == 0
-        organize(nodes(i+1)) = c;
-        c = c + 1;
-    end
-end
-
-% lzTree = {};
+% organize = zeros(1,max(nodes)); % The real order of shows
+% c = 1;
 % for i = 1:dataLength
-%     loc = nodes(i+1);
-%     value = char(finallDict(i));
-%     lzTree(loc) = {value};
+%     if organize(nodes(i+1)) == 0 % Only if this letter shows at the first time
+%         organize(nodes(i+1)) = c;
+%         c = c + 1;
+%     end
 % end
 
-counterSons = zeros(1,max(nodes));
-for i = 1:dataLength
-    counterSons(nodes(i+1)) = counterSons(nodes(i+1)) + 1;
-end
+% counterSons = zeros(1,dataLength); % counterSons(i) is how many size letter i have
+% for i = 1:dataLength
+%     counterSons(nodes(i+1)) = counterSons(nodes(i+1)) + 1;
+% end
+% 
+% copyCounterSons = zeros(1,dataLength); % Copy of counterSons. Starts with zeros and ends as counterSons
+% for i = 1:dataLength
+%     copyCounterSons(i) = 0;
+% end
 
-binArr = zeros(1,max(nodes));
-copyCounterSons = zeros(1,max(nodes));
-for i = 1:dataLength
-    copyCounterSons(i) = 0;
-end
-
-lzTree = {};
+lzTree = {}; % Contain the finall tree
 for i = 1:dataLength
     loc = 1;
     value = char(finallDict(i));
-    len = nodes(i+1);
-    for k = 1:max(nodes)
-        if organize(k) ~= 0 && organize(k) < organize(len) && binArr(organize(k)) == 0
-            loc = loc + counterSons(k);
-            binArr(organize(k)) = 1;
-            disp("len = " + len + ", loc = " + loc);
+%    len = nodes(i+1);
+%     binArr = zeros(1,max(nodes)); % Just to make sure that the change was done once and no more
+%     for k = 1:max(nodes)
+% %          If:
+% %         1. Not the root of the tree
+% %         2. Shows before our letter
+% %         3. This is the first time
+%         if organize(k) ~= 0 && organize(k) < organize(len) && binArr(organize(k)) == 0% && organize(nodes(k+1)) < organize(nodes(len+1))
+%             loc = loc + counterSons(k);
+%             binArr(organize(k)) = 1;
+%             %disp("len = " + len + ", loc = " + loc);
+%         end
+%     end
+
+    %onlyOnce = zeros(1,dataLength);
+    for j = 1:dataLength
+        lengthI = length(char(finallDict(i)));
+        lengthJ = length(char(finallDict(j)));
+        if (lengthJ < lengthI) || (lengthJ == lengthI && nodes(j+1) < nodes(i+1)) || (lengthJ == lengthI && nodes(j+1) == nodes(i+1) && j < i)
+            loc = loc + 1;
         end
     end
-    binArr = zeros(1,max(nodes));
-    loc = loc + copyCounterSons(len);
-    disp("len = " + len + ", finLoc = " + loc);
+
+
+    %loc = loc + copyCounterSons(len);
+    
+    %disp(loc);
+    %disp("len = " + len + ", finLoc = " + loc);
     %disp(loc);
     %loc = findLocation(len, counterSons);
     lzTree(loc) = {value};
-    copyCounterSons(len) = copyCounterSons(len) + 1;
+    %copyCounterSons(len) = copyCounterSons(len) + 1;
     %counterSons(len) = counterSons(len) - 1;
 end
 
 % disp(counterSons);
-%disp(finallDict);
+disp(finallDict);
 %disp(nodes);
 % view(lzTree);
-%treeplot(nodes);
-% disp(lzTree);
+% treeplot(nodes);
+disp(lzTree);
 
 % -------------------------------------------------------------------------
 % Function that get string, array of strings and the size of the array
