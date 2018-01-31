@@ -21,9 +21,15 @@ This project represents our entry for the final project in our study in the Soft
 
 
 ## Members
-* Code leaders:
-  * [Karin Benson](https://github.com/karinbe)
-  * [Hadas Ben Mordechai](https://github.com/Hadas135)
+* Code leaders: [Hadas Ben Mordechai](https://github.com/Hadas135) and [Karin Benson](https://github.com/karinbe)
+<a href="https://github.com/Hadas135">
+<img src="https://avatars3.githubusercontent.com/u/26040970?v=3&s=400"
+alt="Hadas Ben Mordechai" width="100" height="100"/>
+</a>
+
+<a href="https://github.com/karinbe">
+<img src="https://avatars3.githubusercontent.com/u/26060984?v=3&s=460" alt="Karin Benson" width="100" height="100"/>
+</a>
 
 * Acedamic Advisor: Dr. Guy Leshem
 
