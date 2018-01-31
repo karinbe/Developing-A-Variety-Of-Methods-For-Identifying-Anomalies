@@ -1,9 +1,14 @@
-% Important note: the input mast contain numbers only.
+%--------------------------------------------------------------------------
+% alfabeto = ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M'
+%             'N' 'O' 'P' 'Q' 'R' 'S' 'T' 'U' 'V' 'W' 'X' 'W' 'Z'];
+% The input mast contain numbers only. Otherwise, the value is converted to
+% zero.
+%--------------------------------------------------------------------------
 
 rng default; % For reproducibility
 
 % Import the data:
-[~, ~, raw] = xlsread('C:\Users\bm\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\src\table1.xlsx','גיליון1','A2:E11');
+[~, ~, raw] = xlsread('C:\Users\bm\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\src\table2.xlsx','גיליון1','A2:D16');
  
 % Replace non-numeric cells with 0.0:
 R = cellfun(@(x) (~isnumeric(x) && ~islogical(x)) || isnan(x),raw); % Find non-numeric cells
@@ -30,12 +35,6 @@ for i = 1:rows
     end
 end
 
-%----------------------------
-% alfabeto = ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M' 'N' 'O' 'P' 'Q' 'R' 'S' 'T' 'U' 'V' 'W' 'X' 'W' 'Z' ];
-% stringa = dataAsStr;
-% [~,~,d] = lempelZiv(alfabeto, stringa);
-% disp(d);
-%----------------------------
 
 % Variables for LZ78 Algorithm:
 [~, dataLength] = size(dataAsStr);
@@ -129,11 +128,13 @@ for i = 1:dataLength
 end
 
 % disp(counterSons);
-disp(finallDict);
+% disp("Dictionary: ");
+% disp(finallDict);
 %disp(nodes);
 % view(lzTree);
 % treeplot(nodes);
-disp(lzTree);
+% disp("Lempel-Ziv Tree: ");
+% disp(lzTree);
 
 % -------------------------------------------------------------------------
 % Function that get string, array of strings and the size of the array
