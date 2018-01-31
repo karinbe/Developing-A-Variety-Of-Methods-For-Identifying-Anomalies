@@ -1,29 +1,40 @@
 
 
-# Developing Variety Of Methods For Identifying Anomalies
+## Developing Variety Of Methods For Identifying Anomalies
  
  <p align="center">
   <img src=https://github.com/karinbe/Developing-A-Variety-Of-Methods-For-Identifying-Anomalies/blob/master/pics/logo.jpg>
 </p>
  
-As part of the closure of the degree of the Department of Software Engineering (BS.c) in "Azrieli College of Engineering - Jerusalem",
-our final project will deal with information security in medical systems.
+As part of the closure of the degree of the Department of Software Engineering (BS.c) in [Azrieli College of Engineering](http://www.jce.ac.il/), our final project will deal with anomaly detection.
 
 The project will focus on developing a variety of methods for identifying anomalies and making decisions according to the majority vote on medical data.
 
-In our view, the issue of information security, especially in the public health sector, is a focus of trouble on the part of hostile elements - from infiltration to privacy and theft of details to the change in the dosage of a registered drug - which is a threat to human life. Therefore it is desirable to be prepared and to know how to defend against these dangers.
-
+Despite the technological developments and the various tools for responding to the problem, it is still difficult to cover comprehensive tests that will detect all the deviations that are in full force, and even when they are located to determine whether they are correct or not. In this regard, in our study we offer a deep look at the model of anomaly detection, whose goal is to maximize the solution to the problem and leveraging the chances of detecting abnormalities, anomaly
 
 
 ## Disclaimer
 
-This project represents our entry for the final project in our study in the Software Engineering Program (BS.c) in [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.
+* This is the repository from our first degree B.Sc in Software engineer for year 2017-2018
+
+* The project is being written during the 4th year of our study.
+This repository will include all the codes and information about the progress of the project, from the bid stage to the presentation.
+
+## [Project Schedule](https://calendar.google.com/calendar/embed?src=caki4u5vh65nckeb6gos39k8qc%40group.calendar.google.com&ctz=Asia%2FJerusalem)
+
+## [Project Management Board](https://github.com/karinbe/anomaly_in_cyber_networks/projects/1)
 
 
 ## Members
-* Code leaders:
-  * [Karin Benson](https://github.com/karinbe)
-  * [Hadas Ben Mordechai](https://github.com/Hadas135)
+* Code leaders: [Hadas Ben Mordechai](https://github.com/Hadas135) and [Karin Benson](https://github.com/karinbe)
+<a href="https://github.com/Hadas135">
+<img src="https://avatars3.githubusercontent.com/u/26040970?v=3&s=400"
+alt="Hadas Ben Mordechai" width="100" height="100"/>
+</a>
+
+<a href="https://github.com/karinbe">
+<img src="https://avatars3.githubusercontent.com/u/26060984?v=3&s=460" alt="Karin Benson" width="100" height="100"/>
+</a>
 
 * Acedamic Advisor: Dr. Guy Leshem
 
