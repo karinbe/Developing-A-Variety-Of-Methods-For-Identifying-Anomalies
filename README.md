@@ -20,7 +20,7 @@ Despite the technological developments and the various tools for responding to t
 * The project is being written during the 4th year of our study.
 This repository will include all the codes and information about the progress of the project, from the bid stage to the presentation.
 
-
+## [Project Schedule](https://calendar.google.com/calendar/embed?src=caki4u5vh65nckeb6gos39k8qc%40group.calendar.google.com&ctz=Asia%2FJerusalem)
 
 ## Members
 * Code leaders: [Hadas Ben Mordechai](https://github.com/Hadas135) and [Karin Benson](https://github.com/karinbe)
