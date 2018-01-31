@@ -17,7 +17,13 @@ In our view, the issue of information security, especially in the public health 
 
 ## Disclaimer
 
-This project represents our entry for the final project in our study in the Software Engineering Program (BS.c) in [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.
+* This project represents our entry for the final project in our study in the Software Engineering Program (BS.c) in [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.
+
+* This is the repository from our first degree B.Sc in Software engineer for year 2017-2018
+
+* The project is being written during the 4th year of our study.
+This repository will include all the codes and information about the progress of the project, from the bid stage to the presentation.
+
 
 
 ## Members
