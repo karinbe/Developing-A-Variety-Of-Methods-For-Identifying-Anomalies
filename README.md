@@ -22,6 +22,9 @@ This repository will include all the codes and information about the progress of
 
 ## [Project Schedule](https://calendar.google.com/calendar/embed?src=caki4u5vh65nckeb6gos39k8qc%40group.calendar.google.com&ctz=Asia%2FJerusalem)
 
+## [Project Management Board](https://github.com/karinbe/anomaly_in_cyber_networks/projects/1)
+
+
 ## Members
 * Code leaders: [Hadas Ben Mordechai](https://github.com/Hadas135) and [Karin Benson](https://github.com/karinbe)
 <a href="https://github.com/Hadas135">
