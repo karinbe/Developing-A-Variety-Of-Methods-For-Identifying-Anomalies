@@ -1,7 +1,7 @@
 rng default; % For reproducibility
 
 % Import the data:
-[~, ~, raw] = xlsread('C:\Users\bm\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\src\table1.xlsx','גיליון1','A2:D18');
+[~, ~, raw] = xlsread('C:\Users\bm\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\src\table2.xlsx','גיליון1','A2:D16');
  
 % Replace non-numeric cells with 0.0
 R = cellfun(@(x) (~isnumeric(x) && ~islogical(x)) || isnan(x),raw); % Find non-numeric cells
@@ -83,3 +83,5 @@ for i = 1:length(arrayCouter)
         disp(data(i,1) + " is Anomaly.");
     end
 end
+
+clear;

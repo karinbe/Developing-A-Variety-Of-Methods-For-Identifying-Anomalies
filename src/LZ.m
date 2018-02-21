@@ -35,9 +35,13 @@ for i = 1:rows
     end
 end
 
+[~, dataLength] = size(dataAsStr);
+
+LengthOfAllData = dataLength;
+dataLength = 10 * (columns - 1); % const - we arbitrarily chose 10 lines
+SearchStartIndex = dataLength + 1;
 
 % Variables for LZ78 Algorithm:
-[~, dataLength] = size(dataAsStr);
 dict = cell(1,dataLength); % Dictionary
 fatherLocation = zeros(1,dataLength);
 currentString = '';
@@ -69,44 +73,10 @@ for i = 1:dataLength
     nodes(i+1) = fatherLocation(i) + 1;
 end
 
-% organize = zeros(1,max(nodes)); % The real order of shows
-% c = 1;
-% for i = 1:dataLength
-%     if organize(nodes(i+1)) == 0 % Only if this letter shows at the first time
-%         organize(nodes(i+1)) = c;
-%         c = c + 1;
-%     end
-% end
-
-% counterSons = zeros(1,dataLength); % counterSons(i) is how many size letter i have
-% for i = 1:dataLength
-%     counterSons(nodes(i+1)) = counterSons(nodes(i+1)) + 1;
-% end
-% 
-% copyCounterSons = zeros(1,dataLength); % Copy of counterSons. Starts with zeros and ends as counterSons
-% for i = 1:dataLength
-%     copyCounterSons(i) = 0;
-% end
-
 lzTree = {}; % Contain the finall tree
 for i = 1:dataLength
     loc = 1;
     value = char(finallDict(i));
-%    len = nodes(i+1);
-%     binArr = zeros(1,max(nodes)); % Just to make sure that the change was done once and no more
-%     for k = 1:max(nodes)
-% %          If:
-% %         1. Not the root of the tree
-% %         2. Shows before our letter
-% %         3. This is the first time
-%         if organize(k) ~= 0 && organize(k) < organize(len) && binArr(organize(k)) == 0% && organize(nodes(k+1)) < organize(nodes(len+1))
-%             loc = loc + counterSons(k);
-%             binArr(organize(k)) = 1;
-%             %disp("len = " + len + ", loc = " + loc);
-%         end
-%     end
-
-    %onlyOnce = zeros(1,dataLength);
     for j = 1:dataLength
         lengthI = length(char(finallDict(i)));
         lengthJ = length(char(finallDict(j)));
@@ -115,26 +85,22 @@ for i = 1:dataLength
         end
     end
 
-
-    %loc = loc + copyCounterSons(len);
-    
-    %disp(loc);
-    %disp("len = " + len + ", finLoc = " + loc);
-    %disp(loc);
-    %loc = findLocation(len, counterSons);
     lzTree(loc) = {value};
-    %copyCounterSons(len) = copyCounterSons(len) + 1;
-    %counterSons(len) = counterSons(len) - 1;
 end
 
-% disp(counterSons);
-% disp("Dictionary: ");
-% disp(finallDict);
-%disp(nodes);
-% view(lzTree);
-% treeplot(nodes);
-% disp("Lempel-Ziv Tree: ");
-% disp(lzTree);
+% Search:
+howManyTimes = (LengthOfAllData - SearchStartIndex + 1) / (columns - 1);% How many times the loop will run
+startPos = SearchStartIndex;
+endPos = SearchStartIndex + columns - 2;
+for i = 1:howManyTimes
+    stringToSearch = extractBetween(dataAsStr,startPos,endPos);
+    if ~ismember(stringToSearch , lzTree)
+        disp(stringToSearch + " is Anomaly.");
+    end
+    startPos = startPos + columns - 1;
+    endPos = endPos + columns - 1;
+end
+
 
 % -------------------------------------------------------------------------
 % Function that get string, array of strings and the size of the array

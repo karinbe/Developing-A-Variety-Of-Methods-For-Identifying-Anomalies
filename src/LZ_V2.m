@@ -1,9 +1,9 @@
-%----------------------------------------------------------------------------------------------------------------------
-% alfabeto = ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M' 'N'
-      'O' 'P' 'Q' 'R' 'S' 'T' 'U' 'V' 'W' 'X' 'W' 'Z'];
+%--------------------------------------------------------------------------
+% alfabeto = ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M'
+%             'N' 'O' 'P' 'Q' 'R' 'S' 'T' 'U' 'V' 'W' 'X' 'W' 'Z'];
 % The input mast contain numbers only. Otherwise, the value is converted to
 % zero.
-%----------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------
 
 rng default; % For reproducibility
 
@@ -34,7 +34,7 @@ for i = 1:rows
         dataAsStr = strcat(dataAsStr,char(ascii));
     end
 end
-
+disp(dataAsStr);
 
 % Variables for LZ78 Algorithm:
 [~, dataLength] = size(dataAsStr);
@@ -62,7 +62,7 @@ finallDict = cell(1,dataLength);
 for i = 1:currentDictIndex-1
     finallDict(i) = dict(i);
 end
-
+disp(finallDict);
 % Build & draw the tree:
 nodes = zeros(1,dataLength); % Each cell contain the location of str(i) father + 1
 for i = 1:dataLength
@@ -115,7 +115,6 @@ for i = 1:dataLength
         end
     end
 
-
     %loc = loc + copyCounterSons(len);
     
     %disp(loc);
@@ -135,6 +134,13 @@ end
 % treeplot(nodes);
 % disp("Lempel-Ziv Tree: ");
 % disp(lzTree);
+
+% Search:
+str1 = 'IS';
+if ismember(str1 , lzTree)
+    disp("finally!!!");
+end
+
 
 % -------------------------------------------------------------------------
 % Function that get string, array of strings and the size of the array
