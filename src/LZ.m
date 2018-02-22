@@ -95,7 +95,7 @@ endPos = SearchStartIndex + columns - 2;
 for i = 1:howManyTimes
     stringToSearch = extractBetween(dataAsStr,startPos,endPos);
     if ~ismember(stringToSearch , lzTree)
-        disp(stringToSearch + " is Anomaly.");
+        disp(dataAsNums((startPos - 1)/(columns - 1) + 1, 1) + " ('" + stringToSearch + "') is Anomaly.");
     end
     startPos = startPos + columns - 1;
     endPos = endPos + columns - 1;
