@@ -1,11 +1,10 @@
 rng default; % For reproducibility
 
 % Import the data:
-[~, ~, raw] = xlsread('C:\Users\bm\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\src\table2.xlsx','גיליון1','A2:D16');
- 
-% Replace non-numeric cells with 0.0
+[~, ~, raw] = xlsread('C:\Users\bm\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\diabetic_data_for_testing.xlsx','diabetic_data','A2:AM101767');
+
 R = cellfun(@(x) (~isnumeric(x) && ~islogical(x)) || isnan(x),raw); % Find non-numeric cells
-raw(R) = {0.0}; % Replace non-numeric cells
+raw(R) = {2.0}; % Replace non-numeric cells
 
 % Create output variable:
 data = reshape([raw{:}],size(raw));
@@ -22,9 +21,10 @@ arrayCouter = zeros(1, rows); % arrayCouter[i] = how many times rows i analyzed 
 RANGE = 0; % TODO(?)- What is our threshold for classifying?...
 
 for i = 2:columns-1
-    for j = i+1:columns
+    for j = i+1:columns-1
         matrix = [data(:,i), data(:,j)]; % This matrix always have 2 rows - i and j
         status = 0; % Who is bigger - group 1 or group 2
+        
 %         figure;
 %         plot(matrix(:,1), matrix(:,2), strcat('k',symbol(counter)));
 %         title 'Randomly Generated Data';
@@ -58,14 +58,14 @@ for i = 2:columns-1
             end
         end
         
-        figure;
-        plot(matrix(idx==1,1),matrix(idx==1,2),strcat('r',symbol(counter)),'MarkerSize',6)
-        hold on
-        plot(matrix(idx==2,1),matrix(idx==2,2),strcat('b',symbol(counter)),'MarkerSize',6)
-        %plot(C(:,1),C(:,2),'kx','MarkerSize',15,'LineWidth',3)
-        %legend('Cluster 1','Cluster 2','Centroids','Location','NW')
-        title 'Cluster Assignments and Centroids'
-        hold off
+%         figure;
+%         plot(matrix(idx==1,1),matrix(idx==1,2),strcat('r',symbol(counter)),'MarkerSize',6)
+%         hold on
+%         plot(matrix(idx==2,1),matrix(idx==2,2),strcat('b',symbol(counter)),'MarkerSize',6)
+%         %plot(C(:,1),C(:,2),'kx','MarkerSize',15,'LineWidth',3)
+%         %legend('Cluster 1','Cluster 2','Centroids','Location','NW')
+%         title 'Cluster Assignments and Centroids'
+%         hold off
         
         counter = counter + 1;
         if counter == 13
