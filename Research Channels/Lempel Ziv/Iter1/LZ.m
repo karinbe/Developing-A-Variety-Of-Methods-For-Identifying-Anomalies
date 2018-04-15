@@ -1,7 +1,7 @@
 % Iter1:
-
 %--------------------------------------------------------------------------
-% alfabeto = ['a' - 'z']
+% alfabeto = ['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M'
+%             'N' 'O' 'P' 'Q' 'R' 'S' 'T' 'U' 'V' 'W' 'X' 'W' 'Z'];
 % The input mast contain numbers only. Otherwise, the value is converted to
 % zero.
 %--------------------------------------------------------------------------
@@ -9,7 +9,8 @@
 rng default; % For reproducibility
 
 % Import the data:
-[~, ~, raw] = xlsread('C:\Users\קארין\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\table2.xlsx','גיליון1','A2:D16'); 
+[~, ~, raw] = xlsread('C:\Users\קארין\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\src\table2.xlsx','גיליון1','A2:D16');
+ 
 % Replace non-numeric cells with 0.0:
 R = cellfun(@(x) (~isnumeric(x) && ~islogical(x)) || isnan(x),raw); % Find non-numeric cells
 raw(R) = {0.0}; % Replace non-numeric cells
@@ -22,36 +23,18 @@ dataAsNums = reshape([raw{:}],size(raw));
 
 % Quantization level -
 % Convert our data to string:
-dataAsStr = ''; % A string which hold the table's values
-arrRange = cell (1,5); % range of the different cell's types
-ascii=97; % the small char 'a', helps to catalog cell's types
-index=1; % indicator in arrArange
-
+dataAsStr = '';
 for i = 1:rows
-    for j = 2:columns  
-        number = dataAsNums(i,j);
-        if number>=0 && number<60 
-            index=1;
-        elseif number>=60 && number<80
-            index=2;
-        elseif number>=80 && number<150
-            index=3;
-        elseif number>=150 && number<200
-            index=4;
-        else
-            index=5;
+    for j = 2:columns
+        ascii = 65 + dataAsNums(i,j) / 10;
+        if ascii < 65 % === if dataAsNums(i,j) < 0
+            ascii = 65;
+        elseif ascii > 90
+            ascii = 90;
         end
-            
-        if isempty(arrRange{index})
-            arrRange{index}=ascii;
-            ascii=ascii+1;
-        end
-
-        dataAsStr = strcat(dataAsStr,char(arrRange{index}));
+        dataAsStr = strcat(dataAsStr,char(ascii));
     end
 end
-
-disp(dataAsStr);
 
 [~, dataLength] = size(dataAsStr);
 
@@ -84,8 +67,6 @@ finallDict = cell(1,dataLength);
 for i = 1:currentDictIndex-1
     finallDict(i) = dict(i);
 end
-
-disp(finallDict);
 
 % Build & draw the tree:
 nodes = zeros(1,dataLength); % Each cell contain the location of str(i) father + 1

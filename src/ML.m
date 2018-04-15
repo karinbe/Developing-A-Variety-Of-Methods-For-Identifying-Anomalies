@@ -1,7 +1,7 @@
 rng default; % For reproducibility
 
 % Import the data:
-[~, ~, raw] = xlsread('C:\Users\bm\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\diabetic_data_for_testing.xlsx','diabetic_data','A2:AM101767');
+[~, ~, raw] = xlsread('C:\Users\bm\Desktop\lastTry.xlsx','גיליון1','A2:AN120');
 
 R = cellfun(@(x) (~isnumeric(x) && ~islogical(x)) || isnan(x),raw); % Find non-numeric cells
 raw(R) = {2.0}; % Replace non-numeric cells
