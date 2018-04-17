@@ -12,7 +12,7 @@ data = reshape([raw{:}],size(raw));
 % Find out data size:
 [rows, columns] = size(data);
 
-h = zeros(1,rows);
+H = zeros(1,rows);
 
 for i = 1:rows
     for j = 2:columns
@@ -28,16 +28,16 @@ for i = 1:rows
         else
             p = 0.5;
         end
-        h(i) = h(i) + (p * log10(1/p));
+        H(i) = H(i) + (p * log10(1/p));
     end
 end
 
-average = mean(h); % Average
-median = median(h); % Median
+average = mean(H); % Average
+median = median(H); % Median
 
 % Anomalies will be declared only in cases where the value is higher than both average and median
-for i = 1:length(h)
-    if h(i) > average && h(i) > median
+for i = 1:length(H)
+    if H(i) > average && H(i) > median
         disp(data(i,1) + " is Anomaly.");
     end
 end
