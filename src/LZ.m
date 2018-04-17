@@ -7,7 +7,8 @@
 rng default; % For reproducibility
 
 % Import the data:
-[~, ~, raw] = xlsread('C:\Users\÷àøéï\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\table2.xlsx','âéìéåï1','A2:D16'); 
+[~, ~, raw] = xlsread('C:\Users\bm\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\table2.xlsx','âéìéåï1','A2:D16');
+
 % Replace non-numeric cells with 0.0:
 R = cellfun(@(x) (~isnumeric(x) && ~islogical(x)) || isnan(x),raw); % Find non-numeric cells
 raw(R) = {0.0}; % Replace non-numeric cells
@@ -26,7 +27,7 @@ ascii = 97; % the small char 'a', helps to catalog cell's types
 index = 1; % indicator in arrArange
 
 for i = 1:rows
-    for j = 2:columns  
+    for j = 2:columns
         number = dataAsNums(i,j);
         if number >= 0 && number < 60 
             index = 1;
@@ -91,7 +92,7 @@ for i = 1:dataLength
     nodes(i+1) = fatherLocation(i) + 1;
 end
 
-lzTree = {}; % Contain the finall tree
+lzTree = {dataLength}; % Contain the finall tree
 for i = 1:dataLength
     loc = 1;
     value = char(finallDict(i));

@@ -91,7 +91,7 @@ for i = 1:dataLength
     nodes(i+1) = fatherLocation(i) + 1;
 end
 
-lzTree = {}; % Contain the finall tree
+lzTree = {dataLength}; % Contain the finall tree
 for i = 1:dataLength
     loc = 1;
     value = char(finallDict(i));
