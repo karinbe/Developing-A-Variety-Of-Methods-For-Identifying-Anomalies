@@ -1,8 +1,7 @@
-איטרציה 2 - הסבר:
+Iteration 2 - Explanation:
 
-vuthk והסיווג לנורמלי ולאנומלי לא תאם את הציפיות, שינינו את שלב הקוונטיזציה בקוד -
-בהמרת הטבלה למחרוזת, במקום להמיר את המספר לפי טווחים של 10 מספרים כפי שעשינו באיטרציה הקודמת,
-קבענו טווחים גדולים יותר מראש, ומספר בטווח חדש שנראה סומן באות הבאה בסדר הabc.
-(כלומר, הטווח המתאים למספר הראשון שהבחנו בו סומן כa, הטווח הבא שטרם הופיע סומן בb, וכן הלאה)
+Since the classification of normal and abnormal did not match expectations, we changed the quantum phase in the code:
+In converting the table to a string, instead of converting the number by 10-digit ranges, as we did in the previous iteration, we set larger ranges in advance, and determined that each range would receive a letter at run time from the letters in the ABC order.
+(Means, the range corresponding to the first number we observed was marked as 'a', the next range not yet shown is marked with 'b', and etc..)
 
-יתר השלבים (בניית המילון, העץ והחיפוש) נותרו כשהיו.
+The rest of the steps (dictionary construction, tree search) remain the same.
