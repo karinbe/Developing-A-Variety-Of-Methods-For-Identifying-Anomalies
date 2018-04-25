@@ -1,11 +1,12 @@
+ML:
 
 Iteration 1 - Explanation:
 
+ 
+
 Reading the data from the Excel table. Convert each cell that is not a number to 0 and converts the data from table to matrix.
+ 
 
-מעבר על כל צמד עמודות במטריצה, והפעלת אלגוריתם k-means. אלגוריתם זה מסווג את הנתונים ל-k קבוצות שונות. הרצת האלגוריתם נבחרה להעשות עם k=2 וזאת על מנת לסווג את הנתונים לשתי קבוצות שונות - הקבוצה הגדולה תהיה הנתונים הנורמליים, והקבוצה הקטנה יותר תהיה האנומליה. בשלב זה, במידה וההפרש בין שתי הקבוצות קטן במיוחד - דבר המצביע על כך שהשילוב של אותן צמד עמודות לא מעיד הרבה על מי מהפציינטים בריא ומי חולה, השמטנו את התוצאה ולא הכנסנו אותה להמשך החישובים שלנו. במידה ואכן החלוקה לשתי קבוצות חד משמעית, סימנו את השורות (הפציינטים) שהוגדרו כאנומליה.
+Next step, go over each column pair in the matrix, and run a k-means algorithm. This algorithm classifies the data into different groups. In our study, the algorithm is calculated with k = 2 in order to classify the participants into two different groups: the larger group will be the normal data, and the smaller group will be the anomaly. At this stage, if the difference between the two groups is particularly small, indicating that the combination of these two columns does not indicate much of which patients are healthy and who is ill, the result is omitted and we did not add it to our calculations. If the division into two groups is unequivocal, the lines (patients) have been identified as abnormal.
 
-בשלב הבא - לאחר שהסתיים המעבר על כל העמודות, חושב הממוצע של כמות הפעמים של פציינט להסתווג כאנומליה, ואת החציון. 
-בשלב האחרון, פציינט יסווג תחת אנומליה כאשר כמות הפעמים שהוא סווג כאנומליה גדולה גם מהממוצע וגם מהחציון.
-
- 
+In the last stage - after we finished all the columns, we calculated the average number of times a patient would classify as an anomaly, and the median. A patient will be identified as an abnormal case when the number of times he is classified as an anomaly is greater than both the average and the median.
