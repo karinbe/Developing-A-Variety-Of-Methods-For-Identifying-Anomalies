@@ -53,8 +53,9 @@ end
 clear;
 
 % -------------------------------------------------------------------------
-% Function that get a number, check its range
-% and return the probability to be anomaly.
+% Function that get a number
+% and check its 
+% If so, return the index. Otherwise, return zero.
 function p = ProbabilityCalculation(number)
         if number >= 0 && number < 60 
             p = 0.025;

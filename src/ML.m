@@ -18,7 +18,7 @@ counter = 1; % Counter for the symbols
 
 arrayCouter = zeros(1, rows); % arrayCouter[i] = how many times rows i analyzed as anomaly
 
-RANGE = 0; % TODO(?)- What is our threshold for classifying?...
+RANGE = 0;
 
 for i = 2:columns-1
     for j = i+1:columns-1
