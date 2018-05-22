@@ -1,7 +1,7 @@
 rng default; % For reproducibility
 
 % Import the data:
-[~, ~, raw] = xlsread('C:\Users\bm\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\table2.xlsx','גיליון1','A2:D16');
+[~, ~, raw] = xlsread('C:\Users\Hadas\Desktop\Diabetes.xls','Sheet1','A2:I769');
 
 R = cellfun(@(x) (~isnumeric(x) && ~islogical(x)) || isnan(x),raw); % Find non-numeric cells
 raw(R) = {2.0}; % Replace non-numeric cells
@@ -18,9 +18,9 @@ counter = 1; % Counter for the symbols
 
 arrayCouter = zeros(1, rows); % arrayCouter[i] = how many times rows i analyzed as anomaly
 
-RANGE = 0;
+RANGE = 100;
 
-for i = 2:columns-1
+for i = 1:columns-1
     for j = i+1:columns-1
         matrix = [data(:,i), data(:,j)]; % This matrix always have 2 rows - i and j
         status = 0; % Who is bigger - group 1 or group 2
@@ -79,9 +79,13 @@ median = median(arrayCouter); % Median
 
 % Anomalies will be declared only in cases where the value is higher than both average and median
 for i = 1:length(arrayCouter)
-    if arrayCouter(i) > average && arrayCouter(i) > median
-        disp(data(i,1) + " is Anomaly.");
+    %if arrayCouter(i) > average && arrayCouter(i) > median
+    if arrayCouter(i) > 10
+        disp(i+1 + " is Anomaly.");
     end
 end
+
+disp(average);
+disp(median);
 
 clear;
