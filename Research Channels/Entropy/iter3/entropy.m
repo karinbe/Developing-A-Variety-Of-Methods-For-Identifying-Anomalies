@@ -1,5 +1,6 @@
 rng default; % For reproducibility
 
+
 % Import the data:
 [~, ~, raw] = xlsread('C:\Users\Hadas\Desktop\Diabetes.xls','Sheet1','A2:I769');
 
