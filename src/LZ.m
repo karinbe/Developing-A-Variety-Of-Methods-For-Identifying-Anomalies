@@ -22,27 +22,61 @@ dataAsNums = reshape([raw{:}],size(raw));
 % Convert our data to string:
 dataAsStr = ''; % A string which hold the table's values
 trainingDataAsStr = ''; % A string which hold the training data's values
-arrRange = cell(1,5); % range of the different cell's types
+arrRange = cell(1,4); % range of the different cell's types
 ascii = 97; % the small char 'a', helps to catalog cell's types
 index = 1; % indicator in arrArange
 
-n = 10; % Arbitrary selection of the amount of training data
+n = 100; % Arbitrary selection of the amount of training data
 found = 0; % Training data - n first healthy
 
+maxColumnsArray = zeros(1, columns-1); % Contains the highest value of each column
+for i = 1:columns-1
+    maxVal = max(dataAsNums(:,i));
+    disp(maxVal);
+    maxColumnsArray(i) = maxVal;
+end
+
+average = mean(dataAsNums,1);  % Contains the average of each column
+
 for i = 1:rows
-    for j = 1:columns-1
-        index = findIndexByRange(dataAsNums(i,j));
-        if isempty(arrRange{index})
-            arrRange{index} = ascii;
-            ascii = ascii + 1;
-        end
-        
-        if found < n && dataAsNums(i,columns) == 1
-            trainingDataAsStr = strcat(trainingDataAsStr,char(arrRange{index}));
-        else
-            dataAsStr = strcat(dataAsStr,char(arrRange{index}));
-        end
+    index = findIndexByRange(dataAsNums(i,2), maxColumnsArray(2), average(2));
+    if isempty(arrRange{index})
+        arrRange{index} = ascii;
+        ascii = ascii + 1;
     end
+    if found < n && dataAsNums(i,columns) == 1
+        trainingDataAsStr = strcat(trainingDataAsStr,char(arrRange{index}));
+    else
+        dataAsStr = strcat(dataAsStr,char(arrRange{index}));
+    end
+    
+    index = findIndexByRange(dataAsNums(i,5), maxColumnsArray(5), average(5));
+    if isempty(arrRange{index})
+        arrRange{index} = ascii;
+        ascii = ascii + 1;
+    end
+    if found < n && dataAsNums(i,columns) == 1
+        trainingDataAsStr = strcat(trainingDataAsStr,char(arrRange{index}));
+    else
+        dataAsStr = strcat(dataAsStr,char(arrRange{index}));
+    end
+
+
+    
+%     for j = 1:columns-1
+%         index = findIndexByRange(dataAsNums(i,j), maxColumnsArray(j), average(j));
+%         %index = findIndexByRange(dataAsNums(i,j));
+%         if isempty(arrRange{index})
+%             arrRange{index} = ascii;
+%             ascii = ascii + 1;
+%         end
+%         
+%         if found < n && dataAsNums(i,columns) == 1
+%             trainingDataAsStr = strcat(trainingDataAsStr,char(arrRange{index}));
+%         else
+%             dataAsStr = strcat(dataAsStr,char(arrRange{index}));
+%         end
+%     end
     if dataAsNums(i,columns) == 1
         found = found + 1;
     end
@@ -100,22 +134,22 @@ for i = 1:dataLength
 
     lzTree(loc) = {value};
 end
-
-% Search:
-[~, testingDataLength] = size(dataAsStr);
-howManyTimes = testingDataLength / (columns - 1); % How many times the loop will run
-startPos = 1;
-endPos = columns - 1;
-
-for i = 1:howManyTimes
-    stringToSearch = extractBetween(dataAsStr,startPos,endPos);
-    if ~ismember(stringToSearch , lzTree)
-        p = (startPos - 1)/(columns - 1) + 1;
-        disp(p + ": '" + stringToSearch + "' is Anomaly.");
-    end
-    startPos = startPos + columns - 1;
-    endPos = endPos + columns - 1;
-end
+% 
+% % Search:
+% [~, testingDataLength] = size(dataAsStr);
+% howManyTimes = testingDataLength / (columns - 1); % How many times the loop will run
+% startPos = 1;
+% endPos = columns - 1;
+% 
+% for i = 1:howManyTimes
+%     stringToSearch = extractBetween(dataAsStr,startPos,endPos);
+%     if ~ismember(stringToSearch , lzTree)
+%         p = (startPos - 1)/(columns - 1) + 1;
+%         disp(p + ": '" + stringToSearch + "' is Anomaly.");
+%     end
+%     startPos = startPos + columns - 1;
+%     endPos = endPos + columns - 1;
+% end
 
 clear;
 % -------------------------------------------------------------------------
@@ -132,16 +166,14 @@ function fatherIndex = isFound(currentString, dict, currentDictIndex)
     fatherIndex = 0;
 end
 % -------------------------------------------------------------------------
-function index = findIndexByRange(number)
-    if number >= 0 && number < 60 
+function index = findIndexByRange(number, maxVal, average)
+    if number < (average / 2)
         index = 1;
-    elseif number >= 60 && number < 80
+    elseif number >= (average / 2) && number < average
         index = 2;
-    elseif number >= 80 && number < 150
+    elseif number >= average && number < ((maxVal - average) / 2) + average
         index = 3;
-    elseif number >= 150 && number < 200
-        index = 4;
     else
-        index = 5;
+        index = 4;
     end
 end

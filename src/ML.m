@@ -1,7 +1,7 @@
 rng default; % For reproducibility
 
 % Import the data:
-[~, ~, raw] = xlsread('C:\Users\Hadas\Desktop\Diabetes.xls','Sheet1','A2:I769');
+[~, ~, raw] = xlsread('C:\Users\Hadas\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\Diabeteswith01.xls','Sheet1','A2:I769');
 
 R = cellfun(@(x) (~isnumeric(x) && ~islogical(x)) || isnan(x),raw); % Find non-numeric cells
 raw(R) = {2.0}; % Replace non-numeric cells
@@ -18,7 +18,7 @@ counter = 1; % Counter for the symbols
 
 arrayCouter = zeros(1, rows); % arrayCouter[i] = how many times rows i analyzed as anomaly
 
-RANGE = 100;
+RANGE = 0;
 
 for i = 1:columns-1
     for j = i+1:columns-1
@@ -77,15 +77,34 @@ end
 average = mean(arrayCouter); % Average
 median = median(arrayCouter); % Median
 
+counterSS = 0;
+counterHS = 0;
+counterSH = 0;
+counterHH = 0;
+
 % Anomalies will be declared only in cases where the value is higher than both average and median
 for i = 1:length(arrayCouter)
-    %if arrayCouter(i) > average && arrayCouter(i) > median
-    if arrayCouter(i) > 10
+    if arrayCouter(i) > average && arrayCouter(i) > median
+    %if arrayCouter(i) > 10
         disp(i+1 + " is Anomaly.");
-    end
+        if data(i,columns) == 0
+            counterSS = counterSS + 1;
+        else 
+            counterHS = counterHS + 1;
+        end
+    else
+        if data(i,columns) == 0
+             counterSH = counterSH + 1;
+        else
+             counterHH = counterHH + 1;
+        end
+    end 
 end
 
-disp(average);
-disp(median);
+good = counterSS + counterHH;
+bad = counterHS + counterSH;
+disp ("We were right in "+ good + " cases" );
+disp ("We were wrong in "+ bad + " cases");
+
 
 clear;
