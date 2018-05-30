@@ -74,7 +74,7 @@ standardDev = sqrt(standardDev / n);
 
 % Finding anomalies and the counters:
 for i = 1:length(Hx)
-    if Hx(i) < average + (standardDev * 3)
+    if Hx(i) < average - (standardDev * 1)
         disp(i+1 + " is Anomaly.");
         if data(i,columns) == 0
             counterSS = counterSS + 1;
@@ -95,8 +95,7 @@ good = counterSS + counterHH;
 bad = counterHS + counterSH;
 disp ("We were right in "+ good + " cases" );
 disp ("We were wrong in "+ bad + " cases");
-
-% TODO delete all of this:
+ % TODO delete all of this:
 % disp (giniIndex);
 % disp ("average"+average);
 % disp (average+standardDev + "take1 with +");
