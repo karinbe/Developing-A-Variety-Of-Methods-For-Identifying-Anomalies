@@ -1,23 +1,4 @@
-%--------------------------------------------------------------------------
-% alfabeto = ['a' - 'z']
-% The input mast contain numbers only. Otherwise, the value is converted to
-% zero.
-%--------------------------------------------------------------------------
 
-rng default; % For reproducibility
-
-% Import the data:
-[~, ~, raw] = xlsread('C:\Users\קארין\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\Diabeteswith01.xls','Sheet1','A2:I769');
-
-% Replace non-numeric cells with 0.0:
-R = cellfun(@(x) (~isnumeric(x) && ~islogical(x)) || isnan(x),raw); % Find non-numeric cells
-raw(R) = {0.0}; % Replace non-numeric cells
-
-% Create output variable:
-dataAsNums = reshape([raw{:}],size(raw));
-
-% Find out data size:
-[rows, columns] = size(dataAsNums);
 % Quantization level -
 % Convert our data to string:
 dataAsStr = ''; % A string which hold the table's values

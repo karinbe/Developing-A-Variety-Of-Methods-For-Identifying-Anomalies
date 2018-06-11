@@ -1,3 +1,0 @@
- x=ML()
- y=entropy()
- 

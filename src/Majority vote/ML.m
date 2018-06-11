@@ -7,7 +7,7 @@ function MLarray = ML(data)
 
     arrayCouter = zeros(1, rows); % arrayCouter[i] = how many times rows i analyzed as anomaly
 
-    RANGE = 0;
+    RANGE = 100;
 
     for i = 1:columns-1
         for j = i+1:columns-1
