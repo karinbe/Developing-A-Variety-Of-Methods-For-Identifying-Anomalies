@@ -10,7 +10,6 @@ NUM_OF_RANGE = 8;
 
 % Find out data size:
 [rows, columns] = size(data);
-rows = 29; % TODO 29 for 30 rows
 
 LZarray = zeros(1, rows+1); % The array that the function return
 LZarrayCounter = zeros(1, rows); % An array that calculates for each row the number of times it is classified as anomaly.
@@ -18,7 +17,7 @@ LZarrayCounter = zeros(1, rows); % An array that calculates for each row the num
 % Quantization level -
 % Convert our data to string:
 
-n = 10; % Arbitrary selection of the amount of training data TODO
+n = 25; % Arbitrary selection of the amount of training data TODO
 found = 1; % Training data - n first healthy
 countMode = 0; % Count the number of Normal distribution - that is, the number of columns with which we will work.
 
@@ -48,22 +47,30 @@ for i = 1:columns-1
     end
     
     modeVal = mode(trainingDataColumnArr); % The most common value in the column
+    aveSend = mean(trainingDataColumnArr); % average
+    stdevSend = std(trainingDataColumnArr); % Standard deviation
+    med = median(trainingDataColumnArr); % Median
+    common = mode(trainingDataColumnArr);
     
-    if modeVal > min(trainingDataColumnArr) + 1 % TODO -- maybe if mode~mean~median
+    if modeVal > min(trainingDataColumnArr) + 1 % TODO
+        %if abs(aveSend - med) < 10 && abs(aveSend - common) && abs(med - common) % if mode~mean~median TODO
+        disp("col num " + i);
         countMode = countMode + 1;
-        aveSend = mean(trainingDataColumnArr); % average
-        stdevSend = std(trainingDataColumnArr); % Standard deviation
+        
+        %disp("average: " + aveSend + ", median: " + med + "mode: " + common);
+        %histogram(trainingDataColumnArr);
         
         % Quantization and create 'columnStrTraining':
         for r = 1:n
             arrRangeIndex = quantization(trainingDataColumnArr(r), aveSend, stdevSend); % indicator in arrArange
+            %disp("Training data( " + r + "): " + trainingDataColumnArr(r));
             if isempty(arrRange{arrRangeIndex})
                 arrRange{arrRangeIndex} = ascii;
                 ascii = ascii + 1;
             end
             columnStrTraining = strcat(columnStrTraining,char(arrRange{arrRangeIndex}));
         end
-
+        
         for x = 1:NUM_OF_RANGE % Applying values in ranges that not in the training data
             if isempty(arrRange{x})
                 arrRange{x} = ascii;
@@ -105,6 +112,7 @@ for i = 1:columns-1
             nodes(x+1) = fatherLocation(x) + 1;
         end
         
+        
         lzTree = {dictLen}; % Contain the finall tree
         for p = 1:dictLen
             loc = 1;
@@ -120,9 +128,11 @@ for i = 1:columns-1
             lzTree(loc) = {value};
         end
         
-        disp(lzTree);
+        %disp(lzTree);
         
-        disp("stringsToSearch : ");
+        %disp(trainingDataArr);
+        
+        %disp("stringsToSearch : ");
         
         % Next step - Search:
         %j = 1; % Index on LZarrayCounter
@@ -130,14 +140,15 @@ for i = 1:columns-1
         %while j <= rows
         for j = 1:rows
             % disp("j: " + j + ", trainingDataArr(place): " + trainingDataArr(place)+" P" +place);
-            if place < n && j == trainingDataArr(place)
+            if place <= n && j == trainingDataArr(place)
                 %j = j + 1;
                 place = place + 1;
                 
             else
                 arrRangeIndex = quantization(data(j,i), aveSend, stdevSend); % indicator in arrArange
                 stringToSearch = char(arrRange{arrRangeIndex});
-                disp(stringToSearch);
+                %disp(stringToSearch);
+                %disp(stringToSearch + "(" + data(j,i) + "), row = " + j);
                 if ~ismember(stringToSearch , lzTree)
                     LZarrayCounter(j) = LZarrayCounter(j) + 1;
                     %disp(i + ": '" + stringToSearch + "' is Anomaly.");
@@ -145,6 +156,7 @@ for i = 1:columns-1
                 
                 %j = j + 1;
             end
+            
         end
         
     end
@@ -152,17 +164,51 @@ for i = 1:columns-1
     
 end
 
+counterSS = 0;
+counterHS = 0;
+counterSH = 0;
+counterHH = 0;
+
 
 for x = 1:rows
     if LZarrayCounter(x) >= countMode-1
+        disp(x+1 + " is Anomaly(" + data(x,columns) + ").");
         LZarray(x+1) = 1;
+        if data(x,columns) == 0
+            counterSS = counterSS + 1;
+        else
+            counterHS = counterHS + 1;
+        end
+        
+    else
+         if data(i,columns) == 0
+                 counterSH = counterSH + 1;
+            else
+                 counterHH = counterHH + 1;
+         end
     end
 end
+disp ("Lz");
+    disp( "counterSS "+ counterSS);
+    disp( "counterHH "+ counterHH);
+    disp( "counterHS "+ counterHS);
+    disp( "counterSH "+ counterSH);
+    good = counterSS + counterHH;
+    bad = counterHS + counterSH;
+    disp ("We were right in "+ good + " cases");
+    disp ("We were wrong in "+ bad + " cases");
+% LZarrayCounter(5) = 2;
+
+% disp("1- LZarrayCounter:");
+% disp(LZarrayCounter);
+% disp("2- LZarray ((((: ");
+% disp(LZarray);
 
 %     for x = 1:30
 %         disp(LZarrayCounter(x)+ " vs " + LZarray(x));
 %     end
 %disp(LZarray);
+disp(sum(LZarray) + " anomalies.");
 
 end
 

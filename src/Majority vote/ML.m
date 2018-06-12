@@ -72,6 +72,11 @@ function MLarray = ML(data)
         end 
     end
 
+    disp ("ML");
+    disp( "counterSS "+ counterSS);
+    disp( "counterHH "+ counterHH);
+    disp( "counterHS "+ counterHS);
+    disp( "counterSH "+ counterSH);
     good = counterSS + counterHH;
     bad = counterHS + counterSH;
     disp ("We were right in "+ good + " cases");

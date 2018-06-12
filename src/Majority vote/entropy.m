@@ -67,7 +67,7 @@ function entropyArray = entropy(data)
     % Finding anomalies and the counters:
     for i = 1:length(Hx)
         if Hx(i) < average - (standardDev * 1)
-            disp(i+1 + " is Anomaly.");
+             disp(i+1 + " is Anomaly.");
             entropyArray(i+1) = 1;
             if data(i,columns) == 0
                 counterSS = counterSS + 1;
@@ -84,9 +84,14 @@ function entropyArray = entropy(data)
     end
 
     % In what we were right and wrong:
+   disp ("ENTROPY");
+    disp( "counterSS "+ counterSS);
+    disp( "counterHH "+ counterHH);
+    disp( "counterHS "+ counterHS);
+    disp( "counterSH "+ counterSH);
     good = counterSS + counterHH;
     bad = counterHS + counterSH;
-    disp ("We were right in "+ good + " cases" );
+    disp ("We were right in "+ good + " cases");
     disp ("We were wrong in "+ bad + " cases");
      % TODO delete all of this:
     % disp (giniIndex);
