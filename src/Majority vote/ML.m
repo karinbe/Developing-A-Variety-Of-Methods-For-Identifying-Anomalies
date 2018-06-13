@@ -56,7 +56,7 @@ function MLarray = ML(data)
     % Anomalies will be declared only in cases where the value is higher than both average and median
     for i = 1:length(arrayCouter)
         if arrayCouter(i) > average && arrayCouter(i) > med
-            disp(i+1 + " is Anomaly.");
+            %disp(i+1 + " is Anomaly.");
             MLarray(i+1) = 1;
             if data(i,columns) == 0
                 counterSS = counterSS + 1;

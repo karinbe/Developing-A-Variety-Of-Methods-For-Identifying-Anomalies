@@ -67,7 +67,7 @@ function entropyArray = entropy(data)
     % Finding anomalies and the counters:
     for i = 1:length(Hx)
         if Hx(i) < average - (standardDev * 1)
-             disp(i+1 + " is Anomaly.");
+%             disp(i+1 + " is Anomaly.");
             entropyArray(i+1) = 1;
             if data(i,columns) == 0
                 counterSS = counterSS + 1;

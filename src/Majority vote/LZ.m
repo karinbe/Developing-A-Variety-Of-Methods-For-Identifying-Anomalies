@@ -52,8 +52,8 @@ for i = 1:columns-1
     med = median(trainingDataColumnArr); % Median
     common = mode(trainingDataColumnArr);
     
-    if modeVal > min(trainingDataColumnArr) + 1 % TODO
-        %if abs(aveSend - med) < 10 && abs(aveSend - common) && abs(med - common) % if mode~mean~median TODO
+    %     if modeVal > min(trainingDataColumnArr) + 1 % TODO
+    if abs(aveSend - med) < 10 && abs(aveSend - common) && abs(med - common) % if mode~mean~median TODO
         disp("col num " + i);
         countMode = countMode + 1;
         
@@ -181,22 +181,22 @@ for x = 1:rows
         end
         
     else
-         if data(i,columns) == 0
-                 counterSH = counterSH + 1;
-            else
-                 counterHH = counterHH + 1;
-         end
+        if data(x,columns) == 0
+            counterSH = counterSH + 1;
+        else
+            counterHH = counterHH + 1;
+        end
     end
 end
 disp ("Lz");
-    disp( "counterSS "+ counterSS);
-    disp( "counterHH "+ counterHH);
-    disp( "counterHS "+ counterHS);
-    disp( "counterSH "+ counterSH);
-    good = counterSS + counterHH;
-    bad = counterHS + counterSH;
-    disp ("We were right in "+ good + " cases");
-    disp ("We were wrong in "+ bad + " cases");
+disp( "counterSS "+ counterSS);
+disp( "counterHH "+ counterHH);
+disp( "counterHS "+ counterHS);
+disp( "counterSH "+ counterSH);
+good = counterSS + counterHH;
+bad = counterHS + counterSH;
+disp ("We were right in "+ good + " cases");
+disp ("We were wrong in "+ bad + " cases");
 % LZarrayCounter(5) = 2;
 
 % disp("1- LZarrayCounter:");

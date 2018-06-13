@@ -1,8 +1,7 @@
 rng default; % For reproducibility
 
 % Import the data:
-[~, ~, raw] = xlsread('C:\Users\Hadas\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\Diabeteswith01.xls','Sheet1','A2:I769');
-
+[~, ~, raw] = xlsread('C:\Users\קארין\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\CardiologyCategorical.xls','Sheet1');
 R = cellfun(@(x) (~isnumeric(x) && ~islogical(x)) || isnan(x),raw); % Find non-numeric cells
 raw(R) = {2.0}; % Replace non-numeric cells
 
@@ -10,10 +9,10 @@ raw(R) = {2.0}; % Replace non-numeric cells
 data = reshape([raw{:}],size(raw));
 
    entropyArray = entropy(data);
-% 
+
    MLarray = ML(data);
 
- LZArray = LZ(data);
+  LZArray = LZ(data);
 
 counterSS = 0;
 counterHS = 0;
@@ -29,13 +28,13 @@ counterHH = 0;
 for i = 1:length(MLarray)-1
     if MLarray(i) + entropyArray(i) + LZArray(i) >= 2 % will be sick for sure
         disp(i + " is anomaly.")
-        if data(i,9) == 0 % TODO cols..
+        if data(i,14) == 0 % TODO cols..
             counterSS = counterSS + 1;
         else
             counterHS = counterHS + 1;
         end
     else
-        if data(i,9) == 0 % TODO cols..
+        if data(i,14) == 0 % TODO cols..
             counterSH = counterSH + 1;
         else
             counterHH = counterHH + 1;
@@ -46,6 +45,7 @@ end
 % In what we were right and wrong:
 good = counterSS + counterHH;
 bad = counterHS + counterSH;
+disp("Majorty Vote");
 disp("counterSS: " + counterSS);
 disp("counterSH: " + counterSH);
 disp("counterHS: " + counterHS);
