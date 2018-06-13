@@ -10,7 +10,7 @@ As part of the closure of the degree of the Department of Software Engineering (
 
 The project will focus on developing a variety of methods for identifying anomalies and making decisions according to the majority vote on medical data.
 
-Despite the technological developments and the various tools for responding to the problem, it is still difficult to cover comprehensive tests that will detect all the deviations that are in full force, and even when they are located to determine whether they are correct or not. In this regard, in our study we offer a deep look at the model of anomaly detection, whose goal is to maximize the solution to the problem and leveraging the chances of detecting abnormalities, anomaly
+Despite the technological developments and the various tools for responding to the problem, it is still difficult to cover comprehensive tests that will detect all the deviations that are in full force, and even when they are located to determine whether they are correct or not. In this regard, in our study we offer a deep look at the model of anomaly detection, whose goal is to maximize the solution to the problem and leveraging the chances of detecting abnormalities, anomaly.
 
 
 ## Disclaimer
@@ -18,7 +18,9 @@ Despite the technological developments and the various tools for responding to t
 * This is the repository from our first degree B.Sc in Software engineer for year 2017-2018
 
 * The project is being written during the 4th year of our study.
-This repository will include all the codes and information about the progress of the project, from the bid stage to the presentation.
+This repository will include all the codes and information about the progress of the project, from the step proposal to the presentation.
+
+* The general explnation is on the [Wiki](https://github.com/karinbe/Developing-Variety-Of-Methods-For-Identifying-Anomalies-/wiki) , the development of the research in [Rescearch Channels](https://github.com/karinbe/Developing-Variety-Of-Methods-For-Identifying-Anomalies-/tree/master/Research%20Channels) and the final code on the [src](https://github.com/karinbe/Developing-Variety-Of-Methods-For-Identifying-Anomalies-/tree/master/src).
 
 ## [Project Schedule](https://calendar.google.com/calendar/embed?src=caki4u5vh65nckeb6gos39k8qc%40group.calendar.google.com&ctz=Asia%2FJerusalem)
 
