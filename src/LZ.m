@@ -3,19 +3,13 @@
 % The input mast contain numbers only. Otherwise, the value is converted to
 % zero.
 %--------------------------------------------------------------------------
-function LZarray = LZ(data)
+function LZarray = LZ(data, rows, columns)
 
 global NUM_OF_RANGE
 NUM_OF_RANGE = 8;
 
-% Find out data size:
-[rows, columns] = size(data);
-
 LZarray = zeros(1, rows+1); % The array that the function return
 LZarrayCounter = zeros(1, rows); % An array that calculates for each row the number of times it is classified as anomaly.
-
-% Quantization level -
-% Convert our data to string:
 
 n = 25; % Arbitrary selection of the amount of training data TODO
 found = 1; % Training data - n first healthy
@@ -46,24 +40,17 @@ for i = 1:columns-1
         trainingDataColumnArr(index) = data(trainingDataArr(index), i);
     end
     
-    modeVal = mode(trainingDataColumnArr); % The most common value in the column
     aveSend = mean(trainingDataColumnArr); % average
     stdevSend = std(trainingDataColumnArr); % Standard deviation
     med = median(trainingDataColumnArr); % Median
-    common = mode(trainingDataColumnArr);
-    
-    %     if modeVal > min(trainingDataColumnArr) + 1 % TODO
-    if abs(aveSend - med) < 10 && abs(aveSend - common)<10 && abs(med - common)<10 % if mode~mean~median TODO
-        disp("col num " + i);
+    common = mode(trainingDataColumnArr); % The most common value in the column
+
+    if abs(aveSend - med) < 10 && abs(aveSend - common) < 10 && abs(med - common) < 10 % if mode~mean~median
         countMode = countMode + 1;
-        
-        %disp("average: " + aveSend + ", median: " + med + "mode: " + common);
-        %histogram(trainingDataColumnArr);
         
         % Quantization and create 'columnStrTraining':
         for r = 1:n
             arrRangeIndex = quantization(trainingDataColumnArr(r), aveSend, stdevSend); % indicator in arrArange
-            %disp("Training data( " + r + "): " + trainingDataColumnArr(r));
             if isempty(arrRange{arrRangeIndex})
                 arrRange{arrRangeIndex} = ascii;
                 ascii = ascii + 1;
@@ -106,12 +93,11 @@ for i = 1:columns-1
             finallDict(p) = dict(p);
         end
         
-        % Build & draw the tree:
+        % Build the tree:
         nodes = zeros(1,dictLen); % Each cell contain the location of str(i) father + 1
         for x = 1:dictLen
             nodes(x+1) = fatherLocation(x) + 1;
         end
-        
         
         lzTree = {dictLen}; % Contain the finall tree
         for p = 1:dictLen
@@ -128,40 +114,21 @@ for i = 1:columns-1
             lzTree(loc) = {value};
         end
         
-        %disp(lzTree);
-        
-        %disp(trainingDataArr);
-        
-        %disp("stringsToSearch : ");
-        
         % Next step - Search:
-        %j = 1; % Index on LZarrayCounter
         place = 1; % Index in the array of the training data
-        %while j <= rows
         for j = 1:rows
-            % disp("j: " + j + ", trainingDataArr(place): " + trainingDataArr(place)+" P" +place);
             if place <= n && j == trainingDataArr(place)
-                %j = j + 1;
-                place = place + 1;
-                
+                place = place + 1; 
             else
                 arrRangeIndex = quantization(data(j,i), aveSend, stdevSend); % indicator in arrArange
                 stringToSearch = char(arrRange{arrRangeIndex});
-                %disp(stringToSearch);
-                %disp(stringToSearch + "(" + data(j,i) + "), row = " + j);
+                
                 if ~ismember(stringToSearch , lzTree)
                     LZarrayCounter(j) = LZarrayCounter(j) + 1;
-                    %disp(i + ": '" + stringToSearch + "' is Anomaly.");
                 end
-                
-                %j = j + 1;
-            end
-            
+            end   
         end
-        
     end
-    
-    
 end
 
 counterSS = 0;
@@ -172,7 +139,6 @@ counterHH = 0;
 
 for x = 1:rows
     if LZarrayCounter(x) >= countMode-1
-        disp(x+1 + " is Anomaly(" + data(x,columns) + ").");
         LZarray(x+1) = 1;
         if data(x,columns) == 0
             counterSS = counterSS + 1;

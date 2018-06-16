@@ -1,7 +1,4 @@
-function entropyArray = entropy(data)
- 
-    % Find out data size:
-    [rows, columns] = size(data);
+function entropyArray = entropy(data, rows, columns)
 
     maxColumnsArray = zeros(1, columns-1); % Contains the highest value of each column
     for i = 1:columns-1
@@ -12,9 +9,9 @@ function entropyArray = entropy(data)
     entropyArray = zeros(1,rows+1);
     Hx = zeros(1,rows); % Contains the entropy of each row
 
-    % Calculating entropy based on the most influential columns:
+    % Calculating entropy for esch row:
     for i = 1:rows
-        px=0;
+        px = 0;
         for j=1 : columns-1
             number = data(i,j);
             px = px + ProbabilityCalculation(number, maxColumnsArray(j));
@@ -42,7 +39,7 @@ function entropyArray = entropy(data)
     % end
     % giniIndex = giniIndexUp / (2*n*giniIndexDown);
 
-    % Finding ____ by Normal Distribution TODO change this comment
+    % Finding the split rule:
     found = 0; % Training data - n first healthy
     sum = 0; % Sum of n first healthy
     i = 1;

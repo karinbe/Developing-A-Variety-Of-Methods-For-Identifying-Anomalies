@@ -1,7 +1,7 @@
 rng default; % For reproducibility
 
 % Import the data:
-[~, ~, raw] = xlsread('C:\Users\קארין\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\Diabeteswith01.xls','Sheet1','A2:I769');
+[~, ~, raw] = xlsread('C:\Users\Hadas\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\letter-unsupervised.xlsx','letter-unsupervised-ad (2)');
 
 R = cellfun(@(x) (~isnumeric(x) && ~islogical(x)) || isnan(x),raw); % Find non-numeric cells
 raw(R) = {2.0}; % Replace non-numeric cells
@@ -9,13 +9,14 @@ raw(R) = {2.0}; % Replace non-numeric cells
 % Create output variable:
 data = reshape([raw{:}],size(raw));
 
-[~, columns] = size(data);
+% Find out data size:
+[rows, columns] = size(data);
 
-entropyArray = entropy(data);
+entropyArray = entropy(data, rows, columns);
 
-MLarray = ML(data);
+LZArray = LZ(data, rows, columns);
 
-LZArray = LZ(data);
+MLarray = ML(data, rows, columns);
 
 counterSS = 0;
 counterHS = 0;
@@ -23,15 +24,15 @@ counterSH = 0;
 counterHH = 0;
 
 for i = 1:length(MLarray)-1
-    if MLarray(i) + entropyArray(i) + LZArray(i) >= 2 % will be sick for sure
-        disp(i + " is anomaly.")
-        if data(i,columns) == 0 % TODO cols..
+    if MLarray(i) + entropyArray(i) + LZArray(i) >= 2 % Anomaly
+        %disp(i + " is anomaly.")
+        if data(i,columns) == 0
             counterSS = counterSS + 1;
         else
             counterHS = counterHS + 1;
         end
     else
-        if data(i,columns) == 0 % TODO cols..
+        if data(i,columns) == 0
             counterSH = counterSH + 1;
         else
             counterHH = counterHH + 1;
