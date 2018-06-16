@@ -1,5 +1,3 @@
-Lempel Ziv
-
 Iteration 4 - Explanation:
 
 At this stage, we attempted to perform the quantization using the mean and maximum value of each column: the four ranges by which we divided the data into letters were based on the distance of the data from the mean and the maximum value of the relevant column.
