@@ -78,14 +78,17 @@ for i = 1:length(arrayCouter)
     end
 end
 
-disp ("ML");
-disp( "counterSS "+ counterSS);
-disp( "counterHH "+ counterHH);
-disp( "counterHS "+ counterHS);
-disp( "counterSH "+ counterSH);
-good = counterSS + counterHH;
-bad = counterHS + counterSH;
-disp ("We were right in "+ good + " cases");
-disp ("We were wrong in "+ bad + " cases");
+disp ("Machine Learning:");
+PercentageOfSuccess = (counterSS + counterHH) / rows;
+PercentageOfSuccess = PercentageOfSuccess * 100;
+disp (PercentageOfSuccess + "%");
+% disp( "counterSS "+ counterSS);
+% disp( "counterHH "+ counterHH);
+% disp( "counterHS "+ counterHS);
+% disp( "counterSH "+ counterSH);
+% good = counterSS + counterHH;
+% bad = counterHS + counterSH;
+% disp ("We were right in "+ good + " cases");
+% disp ("We were wrong in "+ bad + " cases");
 
 end

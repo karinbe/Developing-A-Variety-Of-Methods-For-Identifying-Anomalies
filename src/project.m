@@ -13,11 +13,11 @@ data = reshape([raw{:}],size(raw));
 [rows, columns] = size(data);
 
 entropyArray = entropy(data, rows, columns);
-
+fprintf(1, '\n');
 LZArray = LZ(data, rows, columns);
-
+fprintf(1, '\n');
 MLarray = ML(data, rows, columns);
-
+fprintf(1, '\n');
 counterSS = 0;
 counterHS = 0;
 counterSH = 0;
@@ -41,12 +41,15 @@ for i = 1:length(MLarray)-1
 end
 
 % In what we were right and wrong:
+disp("Majorty Vote:");
+PercentageOfSuccess = (counterSS + counterHH) / rows;
+PercentageOfSuccess = PercentageOfSuccess * 100;
+disp (PercentageOfSuccess + "%");
 good = counterSS + counterHH;
 bad = counterHS + counterSH;
-disp("Majorty Vote");
-disp("counterSS: " + counterSS);
-disp("counterSH: " + counterSH);
-disp("counterHS: " + counterHS);
-disp("counterHH: " + counterHH);
-disp ("We were right in "+ good + " cases" );
-disp ("We were wrong in "+ bad + " cases");
+% disp("counterSS: " + counterSS);
+% disp("counterSH: " + counterSH);
+% disp("counterHS: " + counterHS);
+% disp("counterHH: " + counterHH);
+% disp ("We were right in "+ good + "% from the cases" );
+% disp ("We were wrong in "+ bad + " cases");

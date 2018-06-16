@@ -154,15 +154,18 @@ for x = 1:rows
         end
     end
 end
-disp ("Lz");
-disp( "counterSS "+ counterSS);
-disp( "counterHH "+ counterHH);
-disp( "counterHS "+ counterHS);
-disp( "counterSH "+ counterSH);
-good = counterSS + counterHH;
-bad = counterHS + counterSH;
-disp ("We were right in "+ good + " cases");
-disp ("We were wrong in "+ bad + " cases");
+disp ("Lempel-Ziv:");
+PercentageOfSuccess = (counterSS + counterHH) / rows;
+PercentageOfSuccess = PercentageOfSuccess * 100;
+disp (PercentageOfSuccess + "%");
+% disp( "counterSS "+ counterSS);
+% disp( "counterHH "+ counterHH);
+% disp( "counterHS "+ counterHS);
+% disp( "counterSH "+ counterSH);
+% good = counterSS + counterHH;
+% bad = counterHS + counterSH;
+% disp ("We were right in "+ good + " cases");
+% disp ("We were wrong in "+ bad + " cases");
 % LZarrayCounter(5) = 2;
 
 % disp("1- LZarrayCounter:");
@@ -174,7 +177,6 @@ disp ("We were wrong in "+ bad + " cases");
 %         disp(LZarrayCounter(x)+ " vs " + LZarray(x));
 %     end
 %disp(LZarray);
-disp(sum(LZarray) + " anomalies.");
 
 end
 
