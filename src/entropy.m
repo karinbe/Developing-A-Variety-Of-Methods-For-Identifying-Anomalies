@@ -11,12 +11,15 @@ Hx = zeros(1,rows); % Contains the entropy of each row
 
 % Calculating entropy for esch row:
 for i = 1:rows
-    px = 0;
-    for j=1 : columns-1
+    for j = 1:columns-1
         number = data(i,j);
-        px = px + ProbabilityCalculation(number, maxColumnsArray(j));
+        px = ProbabilityCalculation(number, maxColumnsArray(j));
+        if px ~= 0
+            Hx(i) = Hx(i) + (px * log10(px));
+        end
+        
     end
-    Hx(i) = (px * log10(1/px));
+    Hx(i) = Hx(i) * (-1);
 end
 
 % Counting our success and failure
@@ -63,8 +66,8 @@ standardDev = sqrt(standardDev / n);
 
 % Finding anomalies and the counters:
 for i = 1:length(Hx)
-    if Hx(i) < average - (standardDev * 1)
-        %             disp(i+1 + " is Anomaly.");
+    if Hx(i) > average + (standardDev * 1)
+%         disp(i+1 + " is Anomaly.");
         entropyArray(i+1) = 1;
         if data(i,columns) == 0
             counterSS = counterSS + 1;
