@@ -1,6 +1,6 @@
 function entropyArray = entropy(data, rows, columns)
 
-t0 = clock;
+% t0 = clock;
 
 maxColumnsArray = zeros(1, columns-1); % Contains the highest value of each column
 for i = 1:columns-1
@@ -108,8 +108,8 @@ disp (PercentageOfSuccess + "%");
 % disp (average-(standardDev*2) + "take5 with -");
 % disp (average-(standardDev*3) + "take6 with -");
 
-ms = round(etime(clock,t0) * 1000);
-disp("Run time of entropy (ms): " + ms);
+% ms = round(etime(clock,t0) * 1000);
+% disp("Run time of entropy (ms): " + ms);
 
 end
 
