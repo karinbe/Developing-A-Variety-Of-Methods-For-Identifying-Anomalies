@@ -5,6 +5,8 @@
 %--------------------------------------------------------------------------
 function LZarray = LZ(data, rows, columns)
 
+t0 = clock;
+
 global NUM_OF_RANGE
 NUM_OF_RANGE = 8;
 
@@ -177,6 +179,9 @@ disp (PercentageOfSuccess + "%");
 %         disp(LZarrayCounter(x)+ " vs " + LZarray(x));
 %     end
 %disp(LZarray);
+
+ms = round(etime(clock,t0) * 1000);
+disp("Run time of LZ (ms): " + ms);
 
 end
 

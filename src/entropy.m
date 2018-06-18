@@ -1,5 +1,7 @@
 function entropyArray = entropy(data, rows, columns)
 
+t0 = clock;
+
 maxColumnsArray = zeros(1, columns-1); % Contains the highest value of each column
 for i = 1:columns-1
     maxVal = max(data(:,i));
@@ -66,7 +68,7 @@ standardDev = sqrt(standardDev / n);
 
 % Finding anomalies and the counters:
 for i = 1:length(Hx)
-    if Hx(i) > average + (standardDev * 1)
+    if Hx(i) > average + (1 * standardDev)
 %         disp(i+1 + " is Anomaly.");
         entropyArray(i+1) = 1;
         if data(i,columns) == 0
@@ -105,6 +107,10 @@ disp (PercentageOfSuccess + "%");
 % disp (average-standardDev + "take4 with -");
 % disp (average-(standardDev*2) + "take5 with -");
 % disp (average-(standardDev*3) + "take6 with -");
+
+ms = round(etime(clock,t0) * 1000);
+disp("Run time of entropy (ms): " + ms);
+
 end
 
 % -------------------------------------------------------------------------

@@ -1,5 +1,7 @@
 function MLarray = ML(data, rows, columns)
 
+t0 = clock;
+
 MLarray = zeros(1, rows+1); % The array that the function return
 
 arrayCouter = zeros(1, rows); % arrayCouter[i] = how many times rows i analyzed as anomaly
@@ -90,5 +92,9 @@ disp (PercentageOfSuccess + "%");
 % bad = counterHS + counterSH;
 % disp ("We were right in "+ good + " cases");
 % disp ("We were wrong in "+ bad + " cases");
+
+ms = round(etime(clock,t0) * 1000);
+disp("Run time of ML (ms): " + ms);
+
 
 end
