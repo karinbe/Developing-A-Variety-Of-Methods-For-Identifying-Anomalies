@@ -1,6 +1,4 @@
-warning ('off','all')
 
-t0 = clock;
 rng default; % For reproducibility
 
 % Import the data:
@@ -25,9 +23,6 @@ for i = 1:rows
     end
 end
 
-disp ("Calculation Results:");
-fprintf(1, '\n');
-
 if counter ~= 25
     disp("Error - small database");
     return
@@ -39,15 +34,18 @@ LZArray = LZ(data, rows, columns);
 fprintf(1, '\n');
 MLarray = ML(data, rows, columns);
 fprintf(1, '\n');
-
 counterSS = 0;
 counterHS = 0;
 counterSH = 0;
 counterHH = 0;
 
+% In what we were right and wrong:
+disp("Majorty Vote:");
+
+
 for i = 1:length(MLarray)-1
     if MLarray(i) + entropyArray(i) + LZArray(i) >= 2 % Anomaly
-        %disp(i + " is anomaly.")
+        disp("LINE "+i + " susppecis anomaly.")
         if data(i,columns) == 0
             counterSS = counterSS + 1;
         else
@@ -62,13 +60,3 @@ for i = 1:length(MLarray)-1
     end
 end
 
-% In what we were right and wrong:
-disp("-> Majorty Vote <-");
-PercentageOfSuccess = (counterSS + counterHH) / rows;
-PercentageOfSuccess = PercentageOfSuccess * 100;
-disp ("Success Percentage of the Method: "+PercentageOfSuccess + "%");
-good = counterSS + counterHH;
-bad = counterHS + counterSH;
-
-ms = round(etime(clock,t0) * 1000);
-disp("Run time of majority vote (ms): " + ms);

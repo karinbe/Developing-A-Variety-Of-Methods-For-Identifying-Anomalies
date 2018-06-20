@@ -48,11 +48,26 @@ for i = 1:length(arrayCouter)
     end
 end
 
+counterSS = 0;
+counterHS = 0;
+counterSH = 0;
+counterHH = 0;
 
 % Anomalies will be declared only in cases where the value is higher than both average and median
 for i = 1:length(arrayCouter)
     if arrayCouter(i) > average +(columns/10) && arrayCouter(i) > med + (columns/10)
         MLarray(i+1) = 1;
+        if data(i,columns) == 0
+            counterSS = counterSS + 1;
+        else
+            counterHS = counterHS + 1;
+        end
+    else
+        if data(i,columns) == 0
+            counterSH = counterSH + 1;
+        else
+            counterHH = counterHH + 1;
+        end
     end
 end
 

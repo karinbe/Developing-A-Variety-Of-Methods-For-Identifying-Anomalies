@@ -25,10 +25,9 @@ end
 n = 10; % Arbitrary selection of the amount of training data
 
 % Finding the split rule:
-found = 0; % counter for Training data 
-sum = 0; % Sum of the Training data entropy values
+found = 0; % Training data - n fir
+sum = 0; % Sum of n first healthy
 i = 1;
-
 while found < n
     if data(i,columns) == 1
         sum = sum + Hx(i);
@@ -39,8 +38,7 @@ end
 
 average = sum / n; % Average of the n first healthy
 
-% Standard deviation
-standardDev = 0; 
+standardDev = 0; % Standard deviation
 for x = 1:i
     if data(x,columns) == 1
         standardDev = standardDev + power(Hx(x)-average ,2);
@@ -48,10 +46,21 @@ for x = 1:i
 end
 standardDev = sqrt(standardDev / n);
 
-% Finding anomalies
+% Finding anomalies and the counters:
 for i = 1:length(Hx)
     if Hx(i) > average + (1 * standardDev)
         entropyArray(i+1) = 1;
+        if data(i,columns) == 0
+            counterSS = counterSS + 1;
+        else
+            counterHS = counterHS + 1;
+        end
+    else
+        if data(i,columns) == 0
+            counterSH = counterSH + 1;
+        else
+            counterHH = counterHH + 1;
+        end
     end
 end
 end

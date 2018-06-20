@@ -54,7 +54,7 @@ for i = 1:columns-1
         end
         
         % Fill cell's values in ranges that not in the training data
-        for x = 1:NUM_OF_RANGE
+        for x = 1:NUM_OF_RANGE 
             if isempty(arrRange{x})
                 arrRange{x} = ascii;
                 ascii = ascii + 1;
@@ -95,7 +95,7 @@ for i = 1:columns-1
             nodes(x+1) = fatherLocation(x) + 1;
         end
         
-        %        LZ TREE in order of levels:
+%        LZ TREE in order of levels:
         lzTree = {dictLen}; % Contain the finall tree
         for p = 1:dictLen
             loc = 1;
@@ -119,7 +119,7 @@ for i = 1:columns-1
             else
                 arrRangeIndex = quantization(data(j,i), aveSend, stdevSend); % indicator in arrArange
                 stringToSearch = char(arrRange{arrRangeIndex});
-                %                 check if the value is not in the tree
+%                 check if the value is not in the tree 
                 if ~ismember(stringToSearch , lzTree)
                     LZarrayCounter(j) = LZarrayCounter(j) + 1;
                 end

@@ -1,10 +1,11 @@
-t0 = clock;
+warning ('off','all')
 
 rng default; % For reproducibility
 
 % Import the data:
-[~, ~, raw] = xlsread('C:\Users\קארין\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\tables\CardiologyCategorical.xls','Sheet1');
+[~, ~, raw] = xlsread('C:\Users\קארין\Desktop\Developing-Variety-Of-Methods-For-Identifying-Anomalies-\Tables\Diabeteswith01.xls','Sheet1','A2:I769');
 
+% Deal with the values of the table which not numbers
 R = cellfun(@(x) (~isnumeric(x) && ~islogical(x)) || isnan(x),raw); % Find non-numeric cells
 raw(R) = {2.0}; % Replace non-numeric cells
 
@@ -13,7 +14,9 @@ data = reshape([raw{:}],size(raw));
 
 % Find out data size:
 [rows, columns] = size(data);
+fprintf(1, '\n');
 
+% Input integrity check (and training data)
 counter = 0;
 for i = 1:rows
     if data(i, columns) == 1
@@ -30,45 +33,11 @@ if counter ~= 25
 end
 
 entropyArray = entropy(data, rows, columns);
-fprintf(1, '\n');
 LZArray = LZ(data, rows, columns);
-fprintf(1, '\n');
 MLarray = ML(data, rows, columns);
-fprintf(1, '\n');
-counterSS = 0;
-counterHS = 0;
-counterSH = 0;
-counterHH = 0;
 
 for i = 1:length(MLarray)-1
     if MLarray(i) + entropyArray(i) + LZArray(i) >= 2 % Anomaly
-        %disp(i + " is anomaly.")
-        if data(i,columns) == 0
-            counterSS = counterSS + 1;
-        else
-            counterHS = counterHS + 1;
-        end
-    else
-        if data(i,columns) == 0
-            counterSH = counterSH + 1;
-        else
-            counterHH = counterHH + 1;
-        end
+        disp("LINE " + i + " is Anomaly.")
     end
 end
-
-% In what we were right and wrong:
-disp("Majorty Vote:");
-PercentageOfSuccess = (counterSS + counterHH) / rows;
-PercentageOfSuccess = PercentageOfSuccess * 100;
-disp (PercentageOfSuccess + "%");
-good = counterSS + counterHH;
-bad = counterHS + counterSH;
-% disp("counterSS: " + counterSS);
-% disp("counterSH: " + counterSH);
-% disp("counterHS: " + counterHS);
-% disp("counterHH: " + counterHH);
-% disp ("We were right in "+ good + "% from the cases" );
-% disp ("We were wrong in "+ bad + " cases");
-ms = round(etime(clock,t0) * 1000);
-disp("Run time of majority vote (ms): " + ms);
