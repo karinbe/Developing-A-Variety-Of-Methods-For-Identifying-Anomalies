@@ -4,3 +4,5 @@ In accordance with our development plan and based on the results of the developm
 We calculated the mean and the standard deviation, and divided the intervals according to the interval.
 
 This method did not complete - it is necessary to move from private case to general case, so in the next iteration we will continue to focus on quantization.
+
+That is the last iteration before the final development (which in the src file).

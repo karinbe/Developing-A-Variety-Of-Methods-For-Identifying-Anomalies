@@ -1,4 +1,4 @@
-Iteration 4 - Explanation:
+﻿Iteration 4 - Explanation:
  
 In this iteration, we focused on changing the terms of the decision, which until now had been 0.1 based on the calculations that corresponded to the specific table with which we work, to a general condition that is determined on the data screen only at the time of the run.
 
@@ -12,3 +12,5 @@ Then, based on the scientific graph of the normal distribution percentages aroun
 Of these two methods (distribution and Gini index), the first method provided the best results, so we decided to stick to it.
 
 After changing the terms of the decision, we turned the calculation of entropy into more rules - instead of the calculation being made on the most influential columns, it was done on all the columns. We ran this on the terms of the new decision, and we achieved identical results and even better than the calculation of the previous entropy. Just for testing, we again examined the ranges of +/- 1/2/3 times the standard deviation, this time on the new entropy - and in this test, the mean-1 test was twice as high as the standard deviation gave the highest success rate.
+
+That is the last iteration before the final development (which in the src file).
