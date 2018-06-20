@@ -9,13 +9,13 @@ LZarray = zeros(1, rows+1); % The array that the function return
 LZarrayCounter = zeros(1, rows); % An array that calculates for each row the number of times it is classified as anomaly.
 
 n = 25; % Arbitrary selection of the amount of training data TODO
-found = 1; % Training data - n first healthy
+found = 1; % Training data counter
 countMode = 0; % Count the number of Normal distribution - that is, the number of columns with which we will work.
 
-trainingDataArr = zeros(1,n); % An array that contain the first n-healthy (training data)
-trainingDataCounter = 1; % Index in the array 'trainingDataArr'
+trainingDataArr = zeros(1,n); % An array for the training data
+trainingDataCounter = 1; % Index in the 'trainingDataArr' array's
 
-% Save in trainingDataArr the n-healthy people:
+% Save in trainingDataArr :
 for i = 1:rows
     if data(i,columns) == 1
         trainingDataArr(trainingDataCounter) = i;

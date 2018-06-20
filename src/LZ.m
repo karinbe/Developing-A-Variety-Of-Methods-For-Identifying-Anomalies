@@ -119,7 +119,7 @@ for i = 1:columns-1
             else
                 arrRangeIndex = quantization(data(j,i), aveSend, stdevSend); % indicator in arrArange
                 stringToSearch = char(arrRange{arrRangeIndex});
-                %                 check if the value is not in the tree
+                % check if the value is not in the tree
                 if ~ismember(stringToSearch , lzTree)
                     LZarrayCounter(j) = LZarrayCounter(j) + 1;
                 end
