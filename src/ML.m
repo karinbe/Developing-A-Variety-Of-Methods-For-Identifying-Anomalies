@@ -49,11 +49,6 @@ for i = 1:length(arrayCouter)
 end
 
 
-% Anomalies will be declared only in cases where the value is higher than both average and median
-for i = 1:length(arrayCouter)
-    if arrayCouter(i) > average +(columns/10) && arrayCouter(i) > med + (columns/10)
-        MLarray(i+1) = 1;
-    end
-end
+
 
 end
